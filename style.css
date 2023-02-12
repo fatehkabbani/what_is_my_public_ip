@@ -1,0 +1,50 @@
+body {
+    user-select:none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f1f1f1;
+    overflow: hidden;
+}
+
+.input-container {
+    position: relative;
+}
+
+.input-span {
+    content: "copy";
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-weight: bold;
+    z-index: 1;
+}
+
+.input-span:hover {
+    color: red;
+}
+
+.container {
+    width: 325px;
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+#ip {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+}
+
+#ip-label {
+    font-weight: bold;
+}
