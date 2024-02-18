@@ -1,14 +1,20 @@
 <?php
-function getPublicIP()
-{
+function getPublicIP() {
     $curl = curl_init();
     curl_setopt($curl, CURLOPT_URL, 'http://httpbin.org/ip');
     curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
     $output = curl_exec($curl);
     curl_close($curl);
-    $ip = json_decode($output, true);
-    return $ip['origin'];
-} ?>
+    $ip_info = json_decode($output, true);
+    if (isset($ip_info['origin'])) {
+        $ip = $ip_info['origin'];
+        if (filter_var($ip, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4)) {
+            return $ip;
+        }
+    }
+    return 'i dont know';
+}
+ ?>
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="style.css">
@@ -29,7 +35,6 @@ function getPublicIP()
             <input value="<?php echo getPublicIP(); ?>" type="text" name="ip" id="ip" onclick="this.select();"
                 disabled />
             <span class="input-span">copy</span>
-
         </div>
     </div>
     <script src="script.js">
